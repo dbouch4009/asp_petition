@@ -1,0 +1,43 @@
+﻿@model OnTheKnee.ViewModels.NewSignatureViewModel
+@{
+    /**/
+
+    ViewBag.Title = "SignPetition";
+}
+
+<h2>SignPetition</h2>
+
+@using (@Html.BeginForm("Create", "Movies"))  //'MovieController' is implied here - don't forget the big non-mistake
+{
+    @Html.ValidationSummary(true, "Please fix the following fields:")
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GivenReasonDetail)
+        @Html.TextBoxFor(m => m.GivenReasonDetail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GivenReasonDetail)
+    </div>
+    <div class="form-group">
+        <label>Reason (optional)</label>
+        @Html.TextBoxFor(m => m.CommunityId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CommunityId)
+    </div>
+    <div class="form-group">
+        <label>Do you want your name and reason listed publicly, or only when presented to administration?</label>
+        <br />
+        <label>Show publicly</label>
+        @Html.RadioButtonFor(m => m.ShowPublicly, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ShowPublicly)
+    </div>
+   
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save Movie</button>
+}
