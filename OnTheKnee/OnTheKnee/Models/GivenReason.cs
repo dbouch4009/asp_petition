@@ -11,6 +11,7 @@ namespace OnTheKnee.Models
         public Guid Id { get; set; }
 
         [StringLength(3000)]
+        [Display(Name ="Reason For Signing")]
         public string GivenReasonDetail { get; set; }
     }
 }

@@ -11,11 +11,14 @@ namespace OnTheKnee.Models
         public Guid Id { get; set; }
 
         [StringLength(255)]
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
 
         [StringLength(255)]
+        [Display(Name = "First Name")]
         public string LastName { get; set; }
 
+        [Display(Name = "Show Publicly")]
         public bool ShowPublicly { get; set; }
     }
 }

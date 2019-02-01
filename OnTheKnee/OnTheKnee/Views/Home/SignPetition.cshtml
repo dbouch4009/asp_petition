@@ -2,42 +2,60 @@
 @{
     /**/
 
-    ViewBag.Title = "SignPetition";
+    ViewBag.Title = "Neighbors North Traditional Latin Mass Petition";
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2>Neighbors North Traditional Latin Mass Petition</h2>
+        </div>
+    </div>
+</div>
 
-<h2>SignPetition</h2>
-
-@using (@Html.BeginForm("Create", "Movies"))  //'MovieController' is implied here - don't forget the big non-mistake
+@using (@Html.BeginForm("CreateSignature", "Signature"))  
 {
+<div class="container-fluid">
     @Html.ValidationSummary(true, "Please fix the following fields:")
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName)
-        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.FirstName)
+    <div class="form-group row">
+        <div class="col-4">
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control col-4" })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+        <div class="col-4">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control col-4" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.LastName)
-        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.LastName)
+
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.GivenReasonDetail)
-        @Html.TextBoxFor(m => m.GivenReasonDetail, new { @class = "form-control" })
+        @Html.TextAreaFor(m => m.GivenReasonDetail, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.GivenReasonDetail)
     </div>
     <div class="form-group">
-        <label>Reason (optional)</label>
+        <label>Parish</label>
         @Html.TextBoxFor(m => m.CommunityId, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.CommunityId)
     </div>
-    <div class="form-group">
-        <label>Do you want your name and reason listed publicly, or only when presented to administration?</label>
-        <br />
-        <label>Show publicly</label>
-        @Html.RadioButtonFor(m => m.ShowPublicly, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.ShowPublicly)
+    <div>
+        <div class="form-group">
+            <label>Do you want your name and reason listed publicly on this website?</label>
+            <br />
+        </div>
+        <div class="form-group">
+            @Html.CheckBoxFor(m => m.ShowPublicly, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ShowPublicly)
+        </div>
     </div>
-   
+    <br />
+
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Save Movie</button>
+    <div>
+        <button type="submit" class="btn btn-primary">Save Entry</button>
+    </div>
+</div>
 }

@@ -10,6 +10,7 @@ using OnTheKnee.ViewModels;
 
 namespace OnTheKnee.Controllers
 {
+    // For adding new signatures
     public class SignatureController : ApiController
     {
         private ApplicationDbContext _context;
@@ -20,7 +21,7 @@ namespace OnTheKnee.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public void CreateSignature()
+        public void CreateSignature(NewSignatureViewModel newSignatureViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -34,8 +35,27 @@ namespace OnTheKnee.Controllers
 
             var entry = new Entry();
             {
-                //TODO Map me
+                entry.CommunityId = newSignatureViewModel.CommunityId;
+                entry.EntryTime = DateTime.Now;
+                entry.GivenReasonId = new Guid();
+                entry.EntryId = new Guid();
+                entry.PersonId = new Guid();
             }
+
+            var person = new Person();
+            {
+                person.FirstName = newSignatureViewModel.FirstName;
+                person.LastName = newSignatureViewModel.LastName;
+                person.Id = entry.PersonId;
+                person.ShowPublicly = newSignatureViewModel.ShowPublicly;
+            }
+
+            var reason = new GivenReason();
+            {
+                reason.Id = entry.GivenReasonId;
+                reason.GivenReasonDetail = newSignatureViewModel.GivenReasonDetail;
+            }
+
 
             _context.Entries.Add(entry);
             _context.SaveChanges();

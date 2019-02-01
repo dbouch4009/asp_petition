@@ -11,6 +11,7 @@ namespace OnTheKnee.Models
         public Guid Id { get; set; }
 
         [StringLength(255)]
+        [Display(Name ="Community")]
         public string CommunityName { get; set; }
     }
 }

@@ -1,4 +1,14 @@
-﻿body {
+﻿.showPublicCheckbox{
+    float:left;
+    padding-left: 10px;
+}
+
+.conspicuousHeading{
+    color:forestgreen;
+
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
